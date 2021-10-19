@@ -6,16 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="7.dom.js" defer></script>
+    <style>
+      td > img {
+        height: 40px;
+      }
+
+      td {
+        vertical-align: middle;
+      }
+    </style>
   </head>
   <body>
     <form id="form">
       <p>Name: <input type="text" name="name"></p>
       <p>Description: <input type="text" name="description"></p>
       <p>Price: <input type="number" name="price"></p>
+      <p>Image: <input type="file" name="image"></p>
+      <p><img id="imgPreview" src=""></p>
       <p><button type="submit">Add</button></p>
     </form>
     <table id="table">
       <thead>
+        <th>Image</th>
         <th>Name</th>
         <th>Description</th>
         <th>Price</th>
