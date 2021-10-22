@@ -27,7 +27,7 @@ function addProduct(product) {
 
   let tdImg = document.createElement("td");
   let img = document.createElement("img");
-  img.src = SERVER + product.photo;
+  img.src = SERVER + "/" + product.photo;
   tdImg.append(img);
   let tdName = document.createElement("td");
   tdName.append(product.name);
@@ -49,7 +49,7 @@ function addProduct(product) {
 
 async function getProducts() {
   let products = await productService.getProducts();
-  data.products.forEach((p) => addProduct(p));
+  products.forEach((p) => addProduct(p));
 }
 
 document.addEventListener("DOMContentLoaded", (e) => {
