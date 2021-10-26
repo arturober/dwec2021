@@ -1,0 +1,1 @@
+let btn=document.getElementById("button");function sayHello(e){console.log(`Hello ${e}`)}btn.addEventListener("click",e=>{console.log("Hello world!")}),sayHello("Peter");

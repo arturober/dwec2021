@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="constants.js" defer></script>
+    <script src="http.class.js" defer></script>
+    <script src="product-service.class.js" defer></script>
+    <script src="9.ajax.js" defer></script>
+    <style>
+      td > img {
+        height: 40px;
+      }
+
+      td {
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <p>Name: <input type="text" name="name" /></p>
+      <p>Description: <input type="text" name="description" /></p>
+      <p>Image: <input type="file" name="image" /></p>
+      <p><img id="imgPreview" src="" /></p>
+      <p><button type="submit">Add</button></p>
+    </form>
+    <table id="table">
+      <thead>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th></th>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
+</html>

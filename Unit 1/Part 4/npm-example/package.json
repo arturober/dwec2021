@@ -1,0 +1,26 @@
+{
+  "name": "npm-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm run build",
+    "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
+    "serve": "lite-server",
+    "test": "eslint src/*",
+    "prebuild": "npm test",
+    "build": "uglifyjs -mc -o bundle.js src/*.js",
+    "build:watch": "watch \"npm run build\" ./src"
+  },
+  "author": "Arturo",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.1.0",
+    "lite-server": "^2.6.1",
+    "uglify-js": "^3.14.2",
+    "watch": "^1.0.2"
+  }
+}
