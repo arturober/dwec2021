@@ -2,7 +2,6 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
   devServer: {
     static: path.join(__dirname, 'dist'), // Server’s root dir
@@ -23,7 +22,6 @@ module.exports = {
     path: path.join(__dirname + "/dist"),
     publicPath: "/",
   },
-  plugins: [new MiniCssExtractPlugin()],
   module: {
     rules: [
       {
@@ -36,11 +34,16 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendors: {
-          test: /[\\/]node_modules[\\/]/,
+          test(module) {
+            return module.resource && module.resource.includes('/node_modules');
+          },
           name: "vendors",
           chunks: "all",
         },
         commons: {
+          test(module) {
+            return module.resource && !module.resource.includes('/node_modules');
+          },
           chunks: "initial", // Optimize chunks generation
           name: "commons", // chunk name
           minChunks: 2, // How many files import this chunk
@@ -50,6 +53,7 @@ module.exports = {
     },
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: "../index.html",
       chunks: ["index", "commons", "vendors"],
