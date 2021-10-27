@@ -1,1 +1,0 @@
-{"version":3,"file":"commons.css","mappings":";;;AAAA;EACE,YAAY;AACd;;AAEA;EACE,sBAAsB;AACxB","sources":["webpack:///../styles.css"],"sourcesContent":["td > img {\n  height: 40px;\n}\n\ntd {\n  vertical-align: middle;\n}\n"],"names":[],"sourceRoot":""}
