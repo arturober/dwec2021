@@ -1,13 +1,63 @@
-module.exports = {
-    devServer: {
-        static: __dirname, // Server’s root dir
-        compress: true, // Enable gzip compresion when serving content
-        port: 8080, // Default
-        hot: false
-    },
-    mode: 'development',
-    devtool: 'source-map',
-    
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-        
+
+module.exports = {
+  devServer: {
+    static: path.join(__dirname, 'dist'), // Server’s root dir
+    compress: true, // Enable gzip compresion when serving content
+    port: 8080, // Default
+    hot: false,
+  },
+  //   mode: "production",
+  mode: "development",
+  devtool: "source-map",
+  context: path.join(__dirname, "./src"),
+  entry: {
+    index: "./index.js",
+    "add-product": "./add-product.js",
+  },
+  output: {
+    filename: "[name].bundle.js",
+    path: path.join(__dirname + "/dist"),
+    publicPath: "/",
+  },
+  plugins: [new MiniCssExtractPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
+        commons: {
+          chunks: "initial", // Optimize chunks generation
+          name: "commons", // chunk name
+          minChunks: 2, // How many files import this chunk
+          minSize: 0, // Minimum size of the separated chunk
+        },
+      },
+    },
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "../index.html",
+      chunks: ["index", "commons", "vendors"],
+    }), // By default generates index.html
+    new HtmlWebpackPlugin({
+      filename: "add-product.html",
+      template: "../add-product.html",
+      chunks: ["add-product", "commons", "vendors"],
+    }),
+  ],
 };

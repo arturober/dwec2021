@@ -6,14 +6,20 @@
   "scripts": {
     "build": "webpack",
     "build:watch": "webpack --watch",
-    "start": "webpack serve --open"    
+    "start": "webpack serve --open"
   },
   "author": "Arturo",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^6.5.0",
     "eslint": "^8.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.4.3",
     "webpack": "^5.60.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.3.1"
+  },
+  "dependencies": {
+    "sweetalert2": "^11.1.9"
   }
 }

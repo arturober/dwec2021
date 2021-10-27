@@ -1,6 +1,6 @@
 "use strict";
 
-class Http {
+export class Http {
   async ajax(method, url, headers = {}, body = null) {
     const resp = await fetch(url, { method, headers, body });
     if (!resp.ok) throw new Error(resp.statusText);

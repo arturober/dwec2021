@@ -1,4 +1,7 @@
-class ProductService {
+import { SERVER } from "./constants";
+import { Http } from "./http.class";
+
+export class ProductService {
   constructor() {
     this.http = new Http();
   }

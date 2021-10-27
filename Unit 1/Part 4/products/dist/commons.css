@@ -1,0 +1,13 @@
+/*!****************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!../styles.css ***!
+  \****************************************************************/
+td > img {
+  height: 40px;
+}
+
+td {
+  vertical-align: middle;
+}
+
+
+/*# sourceMappingURL=commons.css.map*/
