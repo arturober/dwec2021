@@ -28,6 +28,7 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
+      { test: /\.handlebars$/, loader: "handlebars-loader" },
     ],
   },
   optimization: {
