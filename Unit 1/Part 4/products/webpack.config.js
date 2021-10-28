@@ -34,16 +34,12 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         vendors: {
-          test(module) {
-            return module.resource && module.resource.includes('/node_modules');
-          },
+          test: (module) =>  module.resource && module.resource.includes('/node_modules'),
           name: "vendors",
           chunks: "all",
         },
         commons: {
-          test(module) {
-            return module.resource && !module.resource.includes('/node_modules');
-          },
+          test: (module) => module.resource && !module.resource.includes('/node_modules'),
           chunks: "initial", // Optimize chunks generation
           name: "commons", // chunk name
           minChunks: 2, // How many files import this chunk
