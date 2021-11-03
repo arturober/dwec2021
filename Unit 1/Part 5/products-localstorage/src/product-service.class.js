@@ -1,22 +1,20 @@
-import { SERVER } from "./constants";
-import { Http } from "./http.class";
+import { ProductsDB } from "./product-db.class";
 
 export class ProductService {
-  constructor() {
-    this.http = new Http();
-  }
+  constructor() {}
 
   async getProducts() {
-    let resp = await this.http.get(`${SERVER}/products`);
-    return resp.products;
+    let prodDb = await ProductsDB.getDB();
+    return prodDb.getAllProducts();
   }
 
   async addProduct(product) {
-    let resp = await this.http.post(`${SERVER}/products`, product);
-    return resp.product;
+    let prodDb = await ProductsDB.getDB();
+    return prodDb.insertProduct(product);
   }
 
   async deleteProduct(id) {
-    await this.http.delete(`${SERVER}/products/${id}`);
+    let prodDb = await ProductsDB.getDB();
+    await prodDb.deleteProduct(id);
   }
 }

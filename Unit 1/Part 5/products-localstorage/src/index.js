@@ -9,7 +9,7 @@ let productService = new ProductService();
 
 function addProduct(product) {
   let tr = document.createElement("tr");
-  let prodHTML = productTemplate({...product, photo: `${SERVER}/${product.photo}`});
+  let prodHTML = productTemplate(product);
   tr.innerHTML = prodHTML;
   
   tr.querySelector("button").addEventListener("click", async (e) => {
@@ -31,3 +31,4 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   getProducts();
 });
+
