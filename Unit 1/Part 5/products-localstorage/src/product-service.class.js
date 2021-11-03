@@ -1,20 +1,20 @@
-import { ProductsDB } from "./product-db.class";
-
 export class ProductService {
-  constructor() {}
+  constructor() {
+    this.products = localStorage.products ? JSON.parse(localStorage.products) : [];
+  }
 
   async getProducts() {
-    let prodDb = await ProductsDB.getDB();
-    return prodDb.getAllProducts();
+    return this.products;
   }
 
   async addProduct(product) {
-    let prodDb = await ProductsDB.getDB();
-    return prodDb.insertProduct(product);
+    this.products.push(product);
+    localStorage.products = JSON.stringify(this.products);
+    return product;
   }
 
-  async deleteProduct(id) {
-    let prodDb = await ProductsDB.getDB();
-    await prodDb.deleteProduct(id);
+  async deleteProduct(product) {
+    this.products = this.products.filter(p => p != product);
+    localStorage.products = JSON.stringify(this.products);
   }
 }

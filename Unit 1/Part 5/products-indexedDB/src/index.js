@@ -13,7 +13,7 @@ function addProduct(product) {
   tr.innerHTML = prodHTML;
   
   tr.querySelector("button").addEventListener("click", async (e) => {
-    await productService.deleteProduct(product);
+    await productService.deleteProduct(product.id);
     tr.remove();
   });
 
