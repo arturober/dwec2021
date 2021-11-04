@@ -32,3 +32,19 @@ document.addEventListener("DOMContentLoaded", (e) => {
   getProducts();
 });
 
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+let p = new Person("Pepe", 23);
+p.dni = "43543534G";
+p.age = "Hola";
+p.name = {
+  a: 23,
+  v: 45
+};
+
+console.log(p);
