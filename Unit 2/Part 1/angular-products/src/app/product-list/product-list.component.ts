@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import { Product } from '../interfaces/product';
 
 @Component({
@@ -34,11 +35,11 @@ export class ProductListComponent {
     },
   ];
   showImage = true;
+  filterSearch = 'HELLO';
 
   constructor() {}
 
   toggleImage() {
     this.showImage = !this.showImage;
   }
-
 }
