@@ -1,7 +1,18 @@
-td {
-  vertical-align: middle;
+.headers {
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  padding: 5px;
+  margin-bottom: 5px;
 }
 
-td:first-child img {
-  height: 40px;
+.headers > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px 5px;
+}
+
+product-item:nth-child(odd) {
+  background: #eee;
 }

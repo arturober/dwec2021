@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Product } from '../interfaces/product';
 
@@ -7,13 +7,14 @@ import { Product } from '../interfaces/product';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit, OnDestroy {
   title = "My product's list";
   headers = {
     description: 'Product',
     price: 'Price',
     available: 'Available',
     image: 'Image',
+    rating: 'Rating'
   };
 
   products: Product[] = [
@@ -54,6 +55,14 @@ export class ProductListComponent {
   filterSearch = '';
 
   constructor() {}
+
+  ngOnInit() {
+    console.log("Product list has been initialized!");
+  }
+
+  ngOnDestroy(): void {
+    console.log("Product list has been destroyed!");
+  }
 
   toggleImage() {
     this.showImage = !this.showImage;
