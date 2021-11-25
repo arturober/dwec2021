@@ -1,13 +1,14 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { ProductsFilterPipe } from './pipes/products-filter.pipe';
 import { ProductItemComponent } from './product-item/product-item.component';
+import { ProductListComponent } from './product-list/product-list.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
+
 
 @NgModule({
   declarations: [
@@ -15,14 +16,16 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
     ProductListComponent,
     ProductsFilterPipe,
     ProductItemComponent,
-    StarRatingComponent
+    StarRatingComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule
+  imports: [BrowserModule, FormsModule, HttpClientModule],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseUrlInterceptor,
+      multi: true,
+    },
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -7,7 +7,7 @@ import { Product, ProductsResponse } from '../interfaces/product';
   providedIn: 'root',
 })
 export class ProductsService {
-  private readonly productURL = 'http://arturober.com:5001/products';
+  private readonly productURL = '/products';
 
   constructor(private readonly http: HttpClient) {}
 
