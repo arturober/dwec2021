@@ -8,7 +8,20 @@ import { ProductsFilterPipe } from './pipes/products-filter.pipe';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { Route, RouterModule, Routes } from '@angular/router';
 
+const routes: Routes = [
+  { path: 'welcome', component: WelcomeComponent },
+  { path: 'products', component: ProductListComponent },
+  // :id is a parameter (product's id)
+  { path: 'products/:id', component: ProductDetailComponent },
+  // Default route (empty) -> Redirect to welcome page
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+  // Doesn't match any of the above
+  { path: '**', redirectTo: '/welcome', pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [
@@ -17,8 +30,15 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
     ProductsFilterPipe,
     ProductItemComponent,
     StarRatingComponent,
+    WelcomeComponent,
+    ProductDetailComponent,
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes)
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

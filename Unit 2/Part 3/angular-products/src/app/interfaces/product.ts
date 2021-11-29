@@ -10,3 +10,7 @@ export interface Product {
 export interface ProductsResponse {
   products: Product[];
 }
+
+export interface ProductResponse {
+  product: Product;
+}
