@@ -1,7 +1,19 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, delay, map, Observable, retry, tap, throwError } from 'rxjs';
-import { Product, ProductResponse, ProductsResponse } from '../interfaces/product';
+import {
+  catchError,
+  delay,
+  map,
+  Observable,
+  retry,
+  tap,
+  throwError,
+} from 'rxjs';
+import {
+  Product,
+  ProductResponse,
+  ProductsResponse,
+} from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +36,9 @@ export class ProductsService {
   }
 
   getProduct(id: number): Observable<Product> {
-    return this.http.get<ProductResponse>(`${this.productURL}/${id}`).pipe(
-      map(resp => resp.product)
-    );
+    return this.http
+      .get<ProductResponse>(`${this.productURL}/${id}`)
+      .pipe(map((resp) => resp.product));
   }
 
   changeRating(idProduct: number, rating: number): Observable<void> {

@@ -11,12 +11,25 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { Route, RouterModule, Routes } from '@angular/router';
+import { ProductIdGuard } from './guards/product-id.guard';
+import { ProductFormComponent } from './product-form/product-form.component';
+import { LeavePageGuard } from './guards/leave-page.guard';
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'products', component: ProductListComponent },
   // :id is a parameter (product's id)
-  { path: 'products/:id', component: ProductDetailComponent },
+  {
+    path: 'products/:id',
+    component: ProductDetailComponent,
+    canActivate: [ProductIdGuard],
+  },
+  {
+    path: 'products/:id/edit',
+    canActivate: [ProductIdGuard],
+    canDeactivate: [LeavePageGuard],
+    component: ProductFormComponent,
+  },
   // Default route (empty) -> Redirect to welcome page
   { path: '', redirectTo: '/welcome', pathMatch: 'full' },
   // Doesn't match any of the above
@@ -32,12 +45,13 @@ const routes: Routes = [
     StarRatingComponent,
     WelcomeComponent,
     ProductDetailComponent,
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
   ],
   providers: [
     {
