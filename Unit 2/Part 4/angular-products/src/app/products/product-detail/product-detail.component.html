@@ -1,0 +1,29 @@
+<div class="card" *ngIf="product; else noProduct">
+  <div class="card-header bg-primary text-white">
+    {{ product.description }}
+  </div>
+  <div class="card-block p-3 text-center">
+    <img [src]="product.imageUrl" alt="" />
+    <div>Price: {{ product.price | currency: 'EUR':'symbol' }}</div>
+    <div>Available since: {{ product.available | date: 'dd/MM/y' }}</div>
+    <div>
+      <star-rating
+        [rating]="product.rating"
+        (ratingChanged)="changeRating($event)"
+      ></star-rating>
+    </div>
+    <div class="mt-3">
+      <button type="button" class="btn btn-danger" (click)="goBack()">
+        Go back
+      </button>
+      <a type="button" class="btn btn-primary ms-3" [routerLink]="['/products', product.id, 'edit']">
+        Edit product
+      </a>
+    </div>
+  </div>
+</div>
+<ng-template #noProduct>
+  <div>Product loading...</div>
+</ng-template>
+
+<a [routerLink]="['/products', 2]">Go to product 2</a>
