@@ -14,6 +14,7 @@ import { Route, RouterModule, Routes } from '@angular/router';
 import { ProductIdGuard } from './guards/product-id.guard';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { LeavePageGuard } from './guards/leave-page.guard';
+import { ProductResolver } from './resolvers/product.resolver';
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -23,6 +24,9 @@ const routes: Routes = [
     path: 'products/:id',
     component: ProductDetailComponent,
     canActivate: [ProductIdGuard],
+    resolve: {
+      product: ProductResolver
+    }
   },
   {
     path: 'products/:id/edit',

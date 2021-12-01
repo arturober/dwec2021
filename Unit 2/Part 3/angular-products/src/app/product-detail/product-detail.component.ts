@@ -22,21 +22,26 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('Product details | Angular products');
+    this.route.data.subscribe({
+      next: data => this.product = data['product']
+    });
+    // this.product = this.route.snapshotdata['product'];
+
     // Subscribes to changes in the route params (product id)
     // Useful when you have a link here to another product detail (Angular doesn't recreate the page)
-    this.route.paramMap
-      .pipe(
-        switchMap((params) => {
-          return this.productsService.getProduct(+params.get('id')!);
-        })
-      )
-      .subscribe({
-        next: (product) => (this.product = product),
-        error: (error) => {
-          console.log(error);
-          this.router.navigate(['/products']);
-        },
-      });
+    // this.route.paramMap
+    //   .pipe(
+    //     switchMap((params) => {
+    //       return this.productsService.getProduct(+params.get('id')!);
+    //     })
+    //   )
+    //   .subscribe({
+    //     next: (product) => (this.product = product),
+    //     error: (error) => {
+    //       console.log(error);
+    //       this.router.navigate(['/products']);
+    //     },
+    //   });
     // This only works if you have to go to another page first in order to load other product details
     // const id = +this.route.snapshot.paramMap.get('id')!;
     // this.productsService.getProduct(id).subscribe({
