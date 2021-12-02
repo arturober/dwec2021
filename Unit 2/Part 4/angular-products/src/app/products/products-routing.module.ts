@@ -8,10 +8,10 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductResolver } from './resolvers/product.resolver';
 
 const routes: Routes = [
-  { path: 'products', component: ProductListComponent },
+  { path: '', component: ProductListComponent },
   // :id is a parameter (product's id)
   {
-    path: 'products/:id',
+    path: ':id',
     component: ProductDetailComponent,
     canActivate: [ProductIdGuard],
     resolve: {
@@ -19,7 +19,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'products/:id/edit',
+    path: ':id/edit',
     canActivate: [ProductIdGuard],
     canDeactivate: [LeavePageGuard],
     component: ProductFormComponent,

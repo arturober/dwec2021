@@ -7,9 +7,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { StarRatingComponent } from './star-rating/star-rating.component';
 import { FormsModule } from '@angular/forms';
-
+import { RatingModule } from '../rating/rating.module';
 
 @NgModule({
   declarations: [
@@ -18,12 +17,12 @@ import { FormsModule } from '@angular/forms';
     ProductItemComponent,
     ProductDetailComponent,
     ProductFormComponent,
-    StarRatingComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    RatingModule
   ]
 })
 export class ProductsModule { }

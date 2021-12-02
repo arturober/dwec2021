@@ -1,13 +1,12 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from './products/products.module';
-
+import { MenuModule } from './menu/menu.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +17,7 @@ import { ProductsModule } from './products/products.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    MenuModule
   ],
   providers: [
     {
