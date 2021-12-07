@@ -1,0 +1,38 @@
+<p [setBgcolor]="color">Hello world</p>
+<p [setBgcolor]="color" textColor="white">Hello world</p>
+
+<select [(ngModel)]="color">
+  <option value="yellow">Yellow</option>
+  <option value="red">Red</option>
+  <option value="#0F6">Green</option>
+  <option value="#06F">Blue</option>
+</select>
+
+<span [ngSwitch]="color">
+  <span *ngSwitchCase="'yellow'">You selected yellow!</span>
+  <span *ngSwitchCase="'red'">I don't like red...</span>
+  <span *ngSwitchCase="'#0F6'">This is green</span>
+  <span *ngSwitchDefault>I'm daltonic so I can't differentiate this color from the rest</span>
+</span>
+
+<p><input type="number" [(ngModel)]="times"></p>
+
+<p *repeatTimes="times; let i = current">Hello {{i}}</p>
+
+
+<p *forFilter="let person from persons by filter">
+  {{person | json}}
+</p>
+
+
+<table>
+  <tr *forGroup="let items of names by colsRow">
+    <td *ngFor="let item of items">{{item}}</td>
+  </tr>
+</table>
+
+<select [(ngModel)]="colsRow">
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
