@@ -1,1 +1,93 @@
-<p>product-form works!</p>
+<div class="card">
+  <div class="card-header bg-success text-white">Edit product</div>
+  <div class="card-body">
+    <form #productForm="ngForm">
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label text-sm-end">Description</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            #descModel="ngModel"
+            [(ngModel)]="product.description"
+            minlength="5"
+            maxlength="60"
+            required
+            [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"
+          />
+          <div class="invalid-feedback" *ngIf="descModel.errors?.['required']">
+            Description cannot be empty
+          </div>
+          <div class="invalid-feedback" *ngIf="descModel.errors?.['minlength']">
+            You must enter at least
+            {{descModel.errors?.['minlength'].requiredLength - descModel.errors?.
+            ['minlength'].actualLength}}
+            characters more
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label text-sm-end">Price</label>
+        <div class="col-sm-10">
+          <input
+            type="number"
+            class="form-control"
+            name="price"
+            [(ngModel)]="product.price"
+            min="0"
+            step="0.01"
+            required
+            #priceModel="ngModel"
+            [ngClass]="validClasses(priceModel, 'is-valid', 'is-invalid')"
+          />
+          <div class="invalid-feedback">
+            Price cannot be empty
+          </div>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label class="col-sm-2 col-form-label text-sm-end">Available</label>
+        <div class="col-sm-10">
+          <input
+            type="datetime-local"
+            class="form-control"
+            name="available"
+            [(ngModel)]="product.available"
+            #availModel="ngModel"
+            required
+            [ngClass]="validClasses(availModel, 'is-valid', 'is-invalid')"
+            minDate="2021-09-01"
+          />
+          <div class="invalid-feedback" *ngIf="availModel.errors?.['required']">
+            Date cannot be empty
+          </div>
+          <div class="invalid-feedback" *ngIf="availModel.errors?.['minDate']">
+            Date cannot be before 01/09/2021
+          </div>
+        </div>
+        <div>
+          {{availModel.errors | json}}
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <div class="offset-sm-2 col-sm-10">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="productForm.invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div>Touched: {{ productForm.touched }}</div>
+    <div>Valid: {{ productForm.valid }}</div>
+    <div>Dirty: {{ productForm.dirty }}</div>
+    <div>Value: {{ productForm.value | json }}</div>
+
+    <div>{{ product | json }}</div>
+  </div>
+</div>

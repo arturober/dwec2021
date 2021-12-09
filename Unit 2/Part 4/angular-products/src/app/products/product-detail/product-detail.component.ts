@@ -21,9 +21,11 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.titleService.setTitle('Product details | Angular products');
     this.route.data.subscribe({
-      next: data => this.product = data['product']
+      next: data => {
+        this.product = data['product'];
+        this.titleService.setTitle(this.product.description + ' | Angular products');
+      }
     });
     // this.product = this.route.snapshotdata['product'];
 

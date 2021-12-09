@@ -9,6 +9,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { FormsModule } from '@angular/forms';
 import { RatingModule } from '../rating/rating.module';
+import { MinDateDirective } from './validators/min-date.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { RatingModule } from '../rating/rating.module';
     ProductItemComponent,
     ProductDetailComponent,
     ProductFormComponent,
+    MinDateDirective,
   ],
   imports: [
     CommonModule,

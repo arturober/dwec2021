@@ -23,6 +23,9 @@ const routes: Routes = [
     canActivate: [ProductIdGuard],
     canDeactivate: [LeavePageGuard],
     component: ProductFormComponent,
+    resolve: {
+      product: ProductResolver,
+    },
   },
 ];
 
