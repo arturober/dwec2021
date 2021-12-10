@@ -46,4 +46,10 @@ export class ProductsService {
       rating,
     });
   }
+
+  updateProduct(product: Product): Observable<Product> {
+    return this.http
+      .put<ProductResponse>(`${this.productURL}/${product.id}`, product)
+      .pipe(map((response) => response.product));
+  }
 }
