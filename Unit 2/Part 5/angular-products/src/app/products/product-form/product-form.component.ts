@@ -2,7 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { catchError, from, map, of, switchMap } from 'rxjs';
 import { CanComponentDeactivate } from 'src/app/guards/leave-page.guard';
+import { ConfirmModalComponent } from 'src/app/modals/confirm-modal/confirm-modal.component';
 import { Product } from '../interfaces/product';
 import { ProductsService } from '../services/products.service';
 
@@ -20,15 +23,37 @@ export class ProductFormComponent implements CanComponentDeactivate, OnInit {
     private readonly titleService: Title,
     private readonly route: ActivatedRoute,
     private readonly productsService: ProductsService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly ngbModal: NgbModal
   ) {}
 
   canDeactivate() {
-    return (
-      this.updated ||
-      this.productForm.pristine ||
-      confirm('Do you want to leave? All changes will be lost!')
+    if(this.updated || this.productForm.pristine) {
+      return true;
+    }
+
+    const modal = this.ngbModal.open(ConfirmModalComponent);
+    // Only asks if you want to leave the page
+    // modal.componentInstance.title = 'Leave page';
+    // modal.componentInstance.body = 'Do you want to leave? All changes will be lost!';
+    // return modal.result.catch(e => false);
+
+    // Asks if you want to save changes
+    modal.componentInstance.title = 'Save product';
+    modal.componentInstance.body = 'Do you want to save changes before leaving?';
+    return from(modal.result as Promise<boolean>).pipe(
+      switchMap(resp => {
+        if(resp) { // User says to save changes
+          return this.productsService.updateProduct(this.product).pipe(
+            map(p => true)
+          );
+        } else { // User doesn't want to save changes
+          return of(true);
+        }
+      }),
+      catchError(e => of(false)) // If there's any error, don't leave page
     );
+
   }
 
   ngOnInit(): void {

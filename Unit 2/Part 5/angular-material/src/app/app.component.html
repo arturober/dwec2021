@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutGap="10px">
+  <div fxFlexAlign="center">
+    <button mat-raised-button color="primary">
+      <mat-icon>home</mat-icon>
+      Hello
+    </button>
+  </div>
+  <div>
+    <button mat-fab color="accent">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div fxFlexAlign="center">
+    <button mat-raised-button color="warn" (click)="openDialog()">
+      Show dialog
+    </button>
+  </div>
+</div>
+<p>{{ response }}</p>
+
+<div fxLayout="row" fxLayoutWrap class="zero">
+  <div fxFlex="33" fxFlex.lt-md="100" class="one"></div>
+  <div fxFlex="33" fxFlex.xs="25" fxLayout="row" fxLayout.xs="column" class="two">
+    <div fxFlex="20" class="two_one"></div>
+    <div fxFlex="40px" class="two_two"></div>
+    <div fxFlex class="two_three"></div>
+  </div>
+  <div fxFlex fxHide.xs class="three"></div>
+</div>
