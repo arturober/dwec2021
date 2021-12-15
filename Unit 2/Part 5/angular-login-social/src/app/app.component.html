@@ -1,0 +1,26 @@
+<div class="container-fluid mt-3">
+  <button
+    googleLogin
+    type="button"
+    class="btn btn-danger m-3"
+    (loginOk)="loggedGoogle($event)"
+  >
+    <fa-icon [icon]="['fab', 'google']"></fa-icon>
+    Login with Google
+  </button>
+
+  <div class="row g-1 m-3" *ngIf="googleUser">
+    <div class="col-2">
+      <img
+        [src]="googleUser.getBasicProfile().getImageUrl()"
+        referrerpolicy="no-referrer"
+        alt=""
+      />
+    </div>
+    <div class="col-4">
+      <div>{{ googleUser.getBasicProfile().getName() }}</div>
+      <div>{{ googleUser.getBasicProfile().getEmail() }}</div>
+    </div>
+    <div class="col-6">{{ googleUser.getAuthResponse().id_token }}</div>
+  </div>
+</div>
