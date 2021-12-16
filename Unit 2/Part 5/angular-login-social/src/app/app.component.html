@@ -21,6 +21,22 @@
       <div>{{ googleUser.getBasicProfile().getName() }}</div>
       <div>{{ googleUser.getBasicProfile().getEmail() }}</div>
     </div>
-    <div class="col-6">{{ googleUser.getAuthResponse().id_token }}</div>
+    <div class="col-6 token">{{ googleUser.getAuthResponse().id_token }}</div>
+  </div>
+
+  <button
+    fbLogin
+    [scopes]="['email', 'public_profile']"
+    class="btn btn-primary m-3"
+    (loginOk)="loggedFacebook($event)"
+    (loginError)="showError($event)"
+  >
+    <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
+    Login with Facebook
+  </button>
+
+  <div class="m-3" *ngIf="fbToken">
+    {{ fbToken }}
+    <p><button (click)="logoutFB()">Logout</button></p>
   </div>
 </div>
