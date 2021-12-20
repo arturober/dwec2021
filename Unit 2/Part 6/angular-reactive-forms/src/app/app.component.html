@@ -1,0 +1,43 @@
+<form [formGroup]="userForm">
+  <p><input type="text" placeholder="Name" formControlName="name" /></p>
+  <div formGroupName="emailGroup">
+    <p>
+      <input type="email" placeholder="Email" formControlName="email" />
+    </p>
+    <p>
+      <input
+        type="email"
+        placeholder="Repeat Email"
+        formControlName="emailConfirm"
+      />
+    </p>
+    <p *ngIf="userForm.controls['emailGroup'].errors?.['match']">
+      Emails don't match
+    </p>
+  </div>
+  <p><input type="tel" placeholder="Phone" formControlName="phone" /></p>
+  <p>
+    <input type="password" placeholder="Password" formControlName="password" />
+  </p>
+  <p>
+    <input type="date" placeholder="Birth date" formControlName="birthDate" />
+  </p>
+  <p
+    formArrayName="phones"
+    *ngFor="let phone of phones.controls; let i = index"
+  >
+    <input type="tel" placeholder="Phone {{ i + 1 }}" [formControlName]="i" />
+  </p>
+
+  <p>
+    Notify by:
+    <input type="radio" formControlName="notifications" value="email" />
+    Email
+    <input type="radio" formControlName="notifications" value="phone" />
+    Phone
+  </p>
+</form>
+
+<p>{{ userForm.value | json }}</p>
+<p><button (click)="setDemoData()">Demo data</button></p>
+<p><button (click)="addPhone()">Add Phone</button></p>

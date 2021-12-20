@@ -1,0 +1,9 @@
+input.ng-valid {
+  border: 1px green solid;
+  box-shadow: inset 0px 0px 3px green;
+}
+
+input.ng-invalid {
+  border: 1px red solid;
+  box-shadow: inset 0px 0px 3px red;
+}
