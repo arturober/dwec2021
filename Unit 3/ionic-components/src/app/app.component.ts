@@ -89,7 +89,7 @@ export class AppComponent {
     {
       title: 'Navigation',
       url: '/navigation1',
-      icon: 'arrow-forward-circle-outline',
+      icon: 'arrow-forward-circle',
     },
     {
       title: 'Popover',
