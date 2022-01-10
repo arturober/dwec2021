@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Driving Directions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <mgl-map [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[14]" [center]="[lng, lat]">
+    <mgl-marker #marker [lngLat]="[lng, lat]"></mgl-marker>
+    <mgl-control mglGeocoder (result)="changePosition($event.result)">
+    </mgl-control>
+  </mgl-map>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="startNavigation()">
+      <ion-icon name="navigate"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

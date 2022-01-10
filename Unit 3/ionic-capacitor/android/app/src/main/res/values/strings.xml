@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ionic Capacitor</string>
+    <string name="title_activity_main">Ionic Capacitor</string>
+    <string name="package_name">com.arturober.capacitor</string>
+    <string name="custom_url_scheme">com.arturober.capacitor</string>
+    <string name="facebook_app_id">909867656314801</string>
+    <string name="facebook_client_token">53925b6dc810f53c21a0eca0239f7c9c</string>
+</resources>
