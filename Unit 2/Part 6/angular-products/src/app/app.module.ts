@@ -14,7 +14,7 @@ import { MenuModule } from './menu/menu.module';
     WelcomeComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,

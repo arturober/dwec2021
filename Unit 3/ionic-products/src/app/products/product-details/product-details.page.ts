@@ -14,7 +14,7 @@ export class ProductDetailsPage implements OnInit {
   product: Product;
   product$: Observable<Product>;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) { 
+  constructor(private productService: ProductService, private route: ActivatedRoute) {
     this.product$ = this.productService.getProduct(this.route.snapshot.params.id).pipe(shareReplay(1));
   }
 

@@ -7,12 +7,11 @@ import { IonItemSliding } from '@ionic/angular';
   styleUrls: ['./list.page.scss'],
 })
 export class ListPage implements OnInit {
-  itemList = ["Sliding 1", "Sliding 2", "Sliding 3"];
+  itemList = ['Sliding 1', 'Sliding 2', 'Sliding 3'];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   close(slidingItem: IonItemSliding) {
     slidingItem.close();
