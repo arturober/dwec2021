@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ToastController, NavController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { User } from '../interfaces/user.interface';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  user = {
+  user: User = {
     name: '',
     password: '',
     email: '',

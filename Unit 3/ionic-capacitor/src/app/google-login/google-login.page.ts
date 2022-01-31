@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
 
 @Component({
   selector: 'app-google-login',
@@ -7,7 +7,7 @@ import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
   styleUrls: ['./google-login.page.scss'],
 })
 export class GoogleLoginPage {
-  user = null;
+  user: User = null;
 
   async login() {
     try {

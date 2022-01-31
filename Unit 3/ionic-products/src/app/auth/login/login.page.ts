@@ -30,6 +30,10 @@ export class LoginPage implements OnInit {
         this.firebaseToken = token.value;
         console.log(token);
       });
+
+      PushNotifications.addListener('registrationError', (error) => {
+        console.log(error);
+      });
     }
   }
 

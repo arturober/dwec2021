@@ -18,8 +18,10 @@ export class ReorderPage implements OnInit {
   }
 
   reorder(event: CustomEvent) {
+    console.log(event.detail);
     const elemFrom = this.foods.splice(event.detail.from, 1);
     this.foods.splice(event.detail.to, 0, elemFrom[0]);
+    console.log(this.foods);
     event.detail.complete();
   }
 

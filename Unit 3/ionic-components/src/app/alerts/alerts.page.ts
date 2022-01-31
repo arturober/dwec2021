@@ -4,7 +4,7 @@ import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-alerts',
   templateUrl: './alerts.page.html',
-  styleUrls: ['./alerts.page.scss']
+  styleUrls: ['./alerts.page.scss'],
 })
 export class AlertsPage implements OnInit {
   resp: string;
@@ -24,24 +24,19 @@ export class AlertsPage implements OnInit {
       buttons: [
         {
           text: 'Ok',
-          handler: () => {
-            return { ok: true };
-          }
+          handler: () => ({ ok: true }),
         },
         {
           text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            return { ok: false };
-          }
-        }
-      ]
+          role: 'cancel'
+        },
+      ],
     });
 
     await alert.present();
 
     const resp = await alert.onDidDismiss();
-    // this.resp = resp.role !== 'cancel' ? 'You said Ok!' : 'You cancelled...';
+    // resp.data === undefined -> Cancelled
     this.resp = resp.data && resp.data.ok ? 'You said Ok!' : 'You cancelled...';
   }
 
@@ -59,28 +54,28 @@ export class AlertsPage implements OnInit {
           name: 'hamburguer',
           type: 'checkbox',
           value: 'hamburguer',
-          label: 'Hamburguer'
+          label: 'Hamburguer',
         },
         {
           name: 'spaghetti',
           type: 'checkbox',
           value: 'spaghetti',
-          label: 'Spaghetti'
+          label: 'Spaghetti',
         },
         {
           name: 'chicken',
           type: 'checkbox',
           value: 'chicken',
-          label: 'Chicken'
-        }
+          label: 'Chicken',
+        },
       ],
-      buttons: ['Ok', 'Cancel']
+      buttons: ['Ok', 'Cancel'],
     });
 
     await alert.present();
 
     const resp = await alert.onDidDismiss();
-    if (resp.data && resp.role !== 'cancel') {
+    if (resp.data && resp.role !== 'cancel') { // There's a response!
       console.log(resp.data.values);
       this.foods = resp.data.values.toString();
     }
@@ -100,15 +95,16 @@ export class AlertsPage implements OnInit {
           type: 'password',
           name: 'pass',
           placeholder: 'Password',
-        }
+        },
       ],
-      buttons: ['Login', 'Cancel']
+      buttons: ['Login', 'Cancel'],
     });
 
     await alert.present();
 
     const result = await alert.onDidDismiss();
     if (result.data && result.role !== 'cancel') {
+      console.log(result.data);
       this.email = result.data.values.email;
       this.pass = result.data.values.pass;
     }

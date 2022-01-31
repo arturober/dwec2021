@@ -16,6 +16,7 @@ export class LocalNotificationsPage implements OnInit, OnDestroy {
   ngOnInit() {
     // When the user taps on the notification
     LocalNotifications.addListener('localNotificationActionPerformed', notif => {
+      console.log(notif);
       this.ngZone.run(() => {
         this.triggered = true;
         this.scheduled = false;
